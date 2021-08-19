@@ -1,5 +1,7 @@
 package com.gnodivad.learningkotlin.kotlin
 
+import java.util.*
+
 fun main(args: Array<String>) {
     var name = "David"
     val surname = "Ong"
@@ -7,5 +9,6 @@ fun main(args: Array<String>) {
     name = "John"
 //    surname = "Doe"
 
-    println(name + " " + surname)
+    println("Hello $name ${surname.uppercase(Locale.getDefault())}")
+    println("Your first \$name has ${name.length} characters")
 }
