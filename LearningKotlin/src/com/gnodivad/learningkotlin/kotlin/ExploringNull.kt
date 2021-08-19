@@ -3,7 +3,7 @@ package com.gnodivad.learningkotlin.kotlin
 fun main() {
     var name: String? = null
 
-    name = "David"
+//    name = "David"
 
-    println(name.toUpperCase())
+    println(name?.toUpperCase())
 }
