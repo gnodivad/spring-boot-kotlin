@@ -1,14 +1,19 @@
 package com.gnodivad.learningkotlin.kotlin
 
 import java.util.*
+import kotlin.math.roundToInt
 
 fun main(args: Array<String>) {
     val myDouble = 21.4
 
     println("Is myDouble a Double? ${myDouble is Double}")
     println("myDouble is a ${myDouble::class.qualifiedName}")
-
     println("myDouble's javaClass is ${myDouble.javaClass}")
+
+    val myInteger = myDouble.roundToInt()
+    println("myInteger is a ${myInteger::class.qualifiedName}")
+
+    val anotherInteger: Int = 17
 
     println()
 
