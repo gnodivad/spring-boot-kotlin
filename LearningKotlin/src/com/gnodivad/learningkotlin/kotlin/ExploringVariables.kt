@@ -1,11 +1,11 @@
 package com.gnodivad.learningkotlin.kotlin
 
 fun main(args: Array<String>) {
-    var name: String = "David"
-    val surname: String = "Ong"
+    var name = "David"
+    val surname = "Ong"
 
     name = "John"
 //    surname = "Doe"
 
-    System.out.println(name + " " + surname)
+    println(name + " " + surname)
 }
