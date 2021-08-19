@@ -1,5 +1,6 @@
 package com.gnodivad.learningkotlin.kotlin
 
+import java.math.BigDecimal
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -14,6 +15,16 @@ fun main(args: Array<String>) {
     println("myInteger is a ${myInteger::class.qualifiedName}")
 
     val anotherInteger: Int = 17
+
+    val myFloat: Float = 13.6f
+
+    val result = myFloat + anotherInteger
+    println(result)
+
+    val bd = BigDecimal(17)
+    val bd2: BigDecimal
+    bd2 = bd.add(BigDecimal(30))
+    println(bd2)
 
     println()
 
