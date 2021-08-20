@@ -11,6 +11,10 @@ fun printSomeMaths(one: Double, two: Double) {
     println("one - two is ${one - two}")
 }
 
+fun methodTakesALambda(input: String, action: (String) -> Int) {
+    println(action(input))
+}
+
 fun main() {
     printAString("Hello world")
 
