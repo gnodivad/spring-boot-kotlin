@@ -1,6 +1,6 @@
 package com.gnodivad.learningkotlin.kotlin
 
-class Customer(val name: String, val address: String, var age: Int)  {
+data class Customer(val name: String, val address: String, var age: Int)  {
     constructor(name: String, age: Int): this(name, "", age)
 }
 
@@ -51,4 +51,9 @@ fun main() {
 
     val customer3 = AnotherAlternativeCustomer.getInstance()
     println(customer3)
+
+    val customer4 = Customer("Sally", 29)
+    println(customer4)
+    val customer5 = customer4.copy(name="Diane")
+    println(customer5)
 }
