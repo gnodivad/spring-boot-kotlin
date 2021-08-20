@@ -30,6 +30,9 @@ class AnotherAlternativeCustomer(val name: String, var age: Int, val address: St
     val nextAge
     get() = age + 1
 
+    operator fun component1() = name
+    operator fun component2() = age
+
     fun uppercaseName() = name.toUpperCase()
 
     override fun toString() = "$name $address $age"
@@ -56,4 +59,7 @@ fun main() {
     println(customer4)
     val customer5 = customer4.copy(name="Diane")
     println(customer5)
+
+    val (name, address, age) = customer5
+    println("$name $address $age")
 }
