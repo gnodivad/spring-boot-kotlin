@@ -16,12 +16,24 @@ class AlternativeCustomer(val name: String, val age: Int) {
     }
 }
 
-class AnotherAlternativeCustomer(val name: String, var age: Int, val address: String = "")
+class AnotherAlternativeCustomer(val name: String, var age: Int, val address: String = "") {
+    var approved: Boolean = false
+
+    set(value) {
+        if (age >= 21) {
+            field = value
+        } else {
+            println("You can't approve a customer under 21 years old.")
+        }
+    }
+}
 
 fun main() {
     val customer = AnotherAlternativeCustomer("Ong", address = "Malaysia", age = 22)
     customer.age = 23
+    customer.approved = true
     val customer2 = AnotherAlternativeCustomer("John", 31)
-    println("${customer.name} is ${customer.age} years old")
-    println("${customer2.name} is ${customer2.age} years old")
+    customer2.approved = true
+    println("${customer.name} is ${customer.age} years old and is ${customer.approved}")
+    println("${customer2.name} is ${customer2.age} years old and is ${customer2.approved}")
 }
