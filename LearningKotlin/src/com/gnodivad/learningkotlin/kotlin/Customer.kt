@@ -33,6 +33,10 @@ class AnotherAlternativeCustomer(val name: String, var age: Int, val address: St
     fun uppercaseName() = name.toUpperCase()
 
     override fun toString() = "$name $address $age"
+
+    companion object {
+        fun getInstance() = AnotherAlternativeCustomer("Micky", 22,"Some address")
+    }
 }
 
 fun main() {
@@ -44,4 +48,7 @@ fun main() {
     println("${customer} is ${customer.age} years old and is ${customer.approved}")
     println("${customer2.name} is ${customer2.age} years old and is ${customer2.approved}")
     println("next year ${customer.uppercaseName()} will be ${customer.nextAge}")
+
+    val customer3 = AnotherAlternativeCustomer.getInstance()
+    println(customer3)
 }
