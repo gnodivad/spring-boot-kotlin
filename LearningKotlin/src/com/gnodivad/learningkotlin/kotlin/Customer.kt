@@ -26,6 +26,9 @@ class AnotherAlternativeCustomer(val name: String, var age: Int, val address: St
             println("You can't approve a customer under 21 years old.")
         }
     }
+
+    val nextAge
+    get() = age + 1
 }
 
 fun main() {
@@ -36,4 +39,5 @@ fun main() {
     customer2.approved = true
     println("${customer.name} is ${customer.age} years old and is ${customer.approved}")
     println("${customer2.name} is ${customer2.age} years old and is ${customer2.approved}")
+    println("next year matt will be ${customer.nextAge}")
 }
