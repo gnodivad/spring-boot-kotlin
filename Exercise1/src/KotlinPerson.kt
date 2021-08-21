@@ -5,12 +5,16 @@ data class KotlinPerson(val id: Long, val title: String, val firstName: String, 
         return "$title $firstName $surname"
     }
 
-    val age: Int
+    val age: Int?
         get() = getAge(dateOfBirth)
+    val safeAge: Int
+        get() {
+            return if (age != null) age else -1
+        }
 
     companion object {
-        fun getAge(dateOfBirth: Calendar?): Int {
-            if (dateOfBirth == null) return -1
+        fun getAge(dateOfBirth: Calendar?): Int? {
+            if (dateOfBirth == null) return null
 
             val today = GregorianCalendar()
             val years = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR)
