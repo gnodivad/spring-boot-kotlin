@@ -1,9 +1,17 @@
 package com.gnodivad.learningkotlin.kotlin
 
+import java.io.FileInputStream
+
 @Throws(InterruptedException::class)
 fun divide(a: Int, b: Int): Double {
     Thread.sleep(1000)
     return (a.toDouble()) / b
+}
+
+fun printFile() {
+    val input = FileInputStream("file.txt")
+
+    input.use {  }
 }
 
 fun main() {
