@@ -1,13 +1,19 @@
 package com.gnodivad.learningkotlin.kotlin
 
 import org.junit.jupiter.api.Test
+import java.time.Year
 import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.fail
 
 class AgeCalculation() {
     fun getAge(dob: Calendar): Int {
-        return 0
+        val today = Calendar.getInstance()
+        val years = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+        return if (dob.get(Calendar.DAY_OF_YEAR) > today.get(Calendar.DAY_OF_YEAR))
+            years - 1
+        else
+            years
     }
 }
 
@@ -16,5 +22,13 @@ class AgeCaculationTests() {
     @Test
     fun checkAgeWhenBornToday() {
         assertEquals(0, AgeCalculation().getAge(Calendar.getInstance()))
+    }
+
+    @Test
+    fun checkAgeWhenBorn1000DaysAgo() {
+        val date = Calendar.getInstance()
+        date.add(Calendar.DAY_OF_YEAR, -1000)
+
+        assertEquals(2, AgeCalculation().getAge(date))
     }
 }
