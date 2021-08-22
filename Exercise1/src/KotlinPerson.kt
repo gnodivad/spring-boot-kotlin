@@ -5,6 +5,12 @@ data class KotlinPerson(val id: Long, val title: String, val firstName: String, 
         return "$title $firstName $surname"
     }
 
+    var favoriteColor : String? = null
+
+    fun getUpperCaseColor(): String {
+        return favoriteColor?.toUpperCase() ?: ""
+    }
+
     val age: Int?
         get() = getAge(dateOfBirth)
     val safeAge: Int
