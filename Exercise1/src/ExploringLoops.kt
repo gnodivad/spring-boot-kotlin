@@ -1,5 +1,5 @@
 fun main() {
-    // while Loops
+    // while loop
     var x: Int = 0
 
     while (x < 10) {
@@ -7,6 +7,7 @@ fun main() {
         x++
     }
 
+    //  for loop
     val people = HashMap<Int, KotlinPerson>()
     people.put(1, KotlinPerson(1, "Mr", "James", "Apple", null))
     people.put(2, KotlinPerson(2, "Miss", "Sophie", "Orange", null))
@@ -16,4 +17,10 @@ fun main() {
     for ((key, value) in people) {
         println("$value has key $key")
     }
+
+    // range
+    for (i in 0..9) {
+        println(i)
+    }
+    (0..9).forEach{ println(it)}
 }
