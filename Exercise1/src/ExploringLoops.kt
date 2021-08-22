@@ -20,7 +20,16 @@ fun main() {
 
     // range
     for (i in 0..9) {
-        println(i)
+        print("$i ")
     }
-    (0..9).forEach{ println(it)}
+    println()
+    (0..9).forEach{ print("$it ") }
+    println()
+    (9 downTo 0).forEach{ print("$it ") }
+    println()
+    (0 until 9).forEach{ print("$it ") }
+    println()
+    (0..9 step 2).forEach{ print("$it ") }
+    println()
+    ('A'..'F').forEach{ print("$it ") }
 }
