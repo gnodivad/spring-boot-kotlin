@@ -7,8 +7,14 @@ data class KotlinPerson(val id: Long, val title: String, val firstName: String, 
 
     var favoriteColor : String? = null
 
+    fun getLastLetter(a: String) = a.takeLast(1)
+
     fun getUpperCaseColor(): String {
         return favoriteColor?.toUpperCase() ?: ""
+    }
+
+    fun getLastLetterOfColor(): String {
+        return favoriteColor?.let { getLastLetter(it) } ?: ""
     }
 
     val age: Int?
