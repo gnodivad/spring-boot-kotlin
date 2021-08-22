@@ -6,4 +6,10 @@ fun main() {
     // mutable list
     val days = mutableListOf("Monday", "Tuesday", "Wednesday")
     val numbers = mutableListOf<Int>()
+
+    // sets
+    val months = mutableSetOf("Jan", "Feb")
+    
+    // maps
+    val webColors = mapOf("red" to "ff0000", "blue" to "00ff00")
 }
