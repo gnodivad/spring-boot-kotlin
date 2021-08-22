@@ -17,6 +17,14 @@ data class KotlinPerson(val id: Long, val title: String, val firstName: String, 
         return favoriteColor?.let { getLastLetter(it) } ?: ""
     }
 
+    fun getColorType(): String {
+        return when (getUpperCaseColor()) {
+            "" -> "empty"
+            "RED", "GREEN", "BLUE" -> "rgb"
+            else -> "other"
+        }
+    }
+
     val age: Int?
         get() = getAge(dateOfBirth)
     val safeAge: Int
