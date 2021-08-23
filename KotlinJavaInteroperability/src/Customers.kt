@@ -7,4 +7,9 @@ class CustomerDatabase() {
         Customer(3, "Dianne"),
         Customer(4, "Sally")
     )
+
+    @Throws(IllegalAccessException::class)
+    fun addCustomer(c: Customer) {
+        throw IllegalAccessException("You cannot add a customer")
+    }
 }

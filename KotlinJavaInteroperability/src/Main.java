@@ -5,6 +5,10 @@ public class Main {
         Customer phil = new Customer(0, "Phil");
         CustomerDatabase db = new CustomerDatabase();
         List<Customer> customers = db.getCustomers();
-        customers.add(phil);
+        try {
+            db.addCustomer(phil);
+        } catch (IllegalAccessException e) {
+            System.out.println("Caught Exception");
+        }
     }
 }
