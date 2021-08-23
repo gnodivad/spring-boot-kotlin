@@ -17,10 +17,11 @@ open class BasicBookingManager(authorisationKey: String) : BookingManager {
     override fun reserveSeat(seat: Seat, customerId: Long) = false
 }
 
-class AdvancedBookingManager : BasicBookingManager("1234") {
+class AdvancedBookingManager : BasicBookingManager("1234"), java.io.Closeable {
     override val version = "2.0"
 
     fun howManyBookings() = 10
+    override fun close() {}
 }
 
 fun main() {
