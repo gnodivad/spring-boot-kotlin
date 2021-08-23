@@ -1,3 +1,5 @@
+import java.math.BigDecimal
+
 interface BookingManager {
     val version: String
 
@@ -7,7 +9,7 @@ interface BookingManager {
     fun systemStatus() = "All Operations are Functional"
 }
 
-open class BasicBookingManager : BookingManager {
+open class BasicBookingManager(authorisationKey: String) : BookingManager {
     override val version = "1.0"
 
     override fun isSeatFree(seat: Seat) = true
@@ -15,8 +17,12 @@ open class BasicBookingManager : BookingManager {
     override fun reserveSeat(seat: Seat, customerId: Long) = false
 }
 
-class AdvancedBookingManager: BasicBookingManager() {
+class AdvancedBookingManager : BasicBookingManager("1234") {
     override val version = "2.0"
 
     fun howManyBookings() = 10
+}
+
+fun main() {
+    println(AdvancedBookingManager().isSeatFree(Seat(1, 1, BigDecimal.ZERO, "")))
 }
