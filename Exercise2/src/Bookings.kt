@@ -32,6 +32,14 @@ class AdvancedBookingManager : BasicBookingManager("12345"), java.io.Closeable {
     override fun close() {}
 }
 
+fun String.toSentenceCase(): String {
+    return this[0].toUpperCase() + this.substring(1)
+}
+
 fun main() {
     println(AdvancedBookingManager().isSeatFree(Seat(1, 1, BigDecimal.ZERO, "")))
+
+    val myList = mutableListOf<Int>()
+    val greeting = "welcome to the system"
+    println(greeting.toSentenceCase())
 }
