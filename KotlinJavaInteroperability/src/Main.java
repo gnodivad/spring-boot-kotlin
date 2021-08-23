@@ -10,5 +10,12 @@ public class Main {
         } catch (IllegalAccessException e) {
             System.out.println("Caught Exception");
         }
+
+        for (Customer c : db.getCustomers()) {
+            System.out.println(c);
+        }
+
+        CustomerDatabase.Companion.helloWorld();
+        CustomerDatabase.helloWorld();
     }
 }

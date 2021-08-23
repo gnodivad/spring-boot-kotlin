@@ -12,4 +12,9 @@ class CustomerDatabase() {
     fun addCustomer(c: Customer) {
         throw IllegalAccessException("You cannot add a customer")
     }
+
+    companion object {
+        @JvmStatic
+        fun helloWorld() = println("Hello world")
+    }
 }
