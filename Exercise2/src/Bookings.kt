@@ -9,15 +9,23 @@ interface BookingManager {
     fun systemStatus() = "All Operations are Functional"
 }
 
+class UnautorisedUserException : Throwable()
+
 open class BasicBookingManager(authorisationKey: String) : BookingManager {
     override val version = "1.0"
 
     override fun isSeatFree(seat: Seat) = true
 
     override fun reserveSeat(seat: Seat, customerId: Long) = false
+
+    init {
+        if (authorisationKey != "12345") {
+            throw UnautorisedUserException()
+        }
+    }
 }
 
-class AdvancedBookingManager : BasicBookingManager("1234"), java.io.Closeable {
+class AdvancedBookingManager : BasicBookingManager("12345"), java.io.Closeable {
     override val version = "2.0"
 
     fun howManyBookings() = 10
