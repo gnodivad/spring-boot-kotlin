@@ -8,7 +8,8 @@ import org.springframework.web.servlet.ModelAndView
 class MainController {
 
     @RequestMapping("")
-    fun homePage(): ModelAndView = ModelAndView("seatBooking", "bean", CheckAvailabilityBackingBean())
+    fun homePage(): ModelAndView =
+        ModelAndView("seatBooking", "bean", CheckAvailabilityBackingBean())
 }
 
 class CheckAvailabilityBackingBean() {
