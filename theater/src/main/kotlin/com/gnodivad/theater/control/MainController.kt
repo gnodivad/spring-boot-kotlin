@@ -1,5 +1,6 @@
 package com.gnodivad.theater.control
 
+import com.gnodivad.theater.services.BookingService
 import com.gnodivad.theater.services.TheaterService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -13,13 +14,19 @@ class MainController {
     @Autowired
     lateinit var theaterService: TheaterService
 
+    @Autowired
+    lateinit var bookingService: BookingService
+
     @RequestMapping("")
     fun homePage(): ModelAndView =
         ModelAndView("seatBooking", "bean", CheckAvailabilityBackingBean())
 
     @RequestMapping(value = ["checkAvailability"], method = [RequestMethod.POST])
     fun checkAvailability(bean: CheckAvailabilityBackingBean): ModelAndView {
-
+        val selectedSeat = theaterService.find(bean.selectedSeatNum, bean.selectedSeatRow)
+        val result = bookingService.isSeatFree(selectedSeat)
+        bean.result = "Seat $selectedSeat is " + if (result) "available" else "booked"
+        return ModelAndView("seatBooking", "bean", bean)
     }
 }
 
