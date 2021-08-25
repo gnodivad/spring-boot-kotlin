@@ -1,6 +1,10 @@
 package com.gnodivad.theater.control
 
+import com.gnodivad.theater.data.PerformanceRepository
 import com.gnodivad.theater.data.SeatRepository
+import com.gnodivad.theater.domain.Booking
+import com.gnodivad.theater.domain.Performance
+import com.gnodivad.theater.domain.Seat
 import com.gnodivad.theater.services.BookingService
 import com.gnodivad.theater.services.TheaterService
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,15 +25,25 @@ class MainController {
     @Autowired
     lateinit var seatRepository: SeatRepository
 
+    @Autowired
+    lateinit var performanceRepository: PerformanceRepository
+
     @RequestMapping("")
-    fun homePage(): ModelAndView =
-        ModelAndView("seatBooking", "bean", CheckAvailabilityBackingBean())
+    fun homePage(): ModelAndView {
+        val model = mapOf(
+            "bean" to CheckAvailabilityBackingBean(),
+            "performances" to performanceRepository.findAll(),
+            "seatNums" to 1..36,
+            "seatRows" to 'A'..'O'
+        )
+        return ModelAndView("seatBooking", model)
+    }
 
     @RequestMapping(value = ["checkAvailability"], method = [RequestMethod.POST])
     fun checkAvailability(bean: CheckAvailabilityBackingBean): ModelAndView {
         val selectedSeat = theaterService.find(bean.selectedSeatNum, bean.selectedSeatRow)
         val result = bookingService.isSeatFree(selectedSeat)
-        bean.result = "Seat $selectedSeat is " + if (result) "available" else "booked"
+//        bean.result = "Seat $selectedSeat is " + if (result) "available" else "booked"
         return ModelAndView("seatBooking", "bean", bean)
     }
 
@@ -43,9 +57,12 @@ class MainController {
 }
 
 class CheckAvailabilityBackingBean() {
-    val seatNums = 1..36
-    val seatRows = 'A'..'O'
     var selectedSeatNum: Int = 1
     var selectedSeatRow: Char = 'A'
-    var result: String = ""
+    var selectedPerformance: Long? = null
+    var customerName: String = ""
+    var available: Boolean? = null
+    var seat: Seat? = null
+    var performance: Performance? = null
+    var booking: Booking? = null
 }
