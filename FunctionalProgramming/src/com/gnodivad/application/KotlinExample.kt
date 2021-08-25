@@ -37,4 +37,8 @@ fun main() {
 
     println(numbers.fold(0) { result, value -> result + value })
     println(numbers.fold(0) { result, value -> if (value > result) value else result })
+    println()
+
+    val myMap = mapOf(1 to "one", 2 to "two", 3 to "three")
+    myMap.filter { it.value.startsWith("t") }.forEach { (k, v) -> println("$k $v") }
 }
