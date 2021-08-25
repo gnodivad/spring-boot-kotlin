@@ -41,10 +41,21 @@ class MainController {
 
     @RequestMapping(value = ["checkAvailability"], method = [RequestMethod.POST])
     fun checkAvailability(bean: CheckAvailabilityBackingBean): ModelAndView {
-        val selectedSeat = theaterService.find(bean.selectedSeatNum, bean.selectedSeatRow)
-        val result = bookingService.isSeatFree(selectedSeat)
-//        bean.result = "Seat $selectedSeat is " + if (result) "available" else "booked"
-        return ModelAndView("seatBooking", "bean", bean)
+        val selectedSeat: Seat = bookingService.findSeat(bean.selectedSeatNum, bean.selectedSeatRow)!!
+        val selectedPerformance = performanceRepository.findById(bean.selectedPerformance!!).get()
+        bean.seat = selectedSeat
+        bean.performance = selectedPerformance
+        val result = bookingService.isSeatFree(selectedSeat, selectedPerformance)
+        bean.available = result
+
+        val model = mapOf(
+            "bean" to bean,
+            "performances" to performanceRepository.findAll(),
+            "seatNums" to 1..36,
+            "seatRows" to 'A'..'O'
+        )
+
+        return ModelAndView("seatBooking", model)
     }
 
 //    @RequestMapping("bootstrap")
