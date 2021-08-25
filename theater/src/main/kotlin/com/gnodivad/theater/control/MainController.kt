@@ -2,6 +2,7 @@ package com.gnodivad.theater.control
 
 import com.gnodivad.theater.services.BookingService
 import com.gnodivad.theater.services.TheaterService
+import org.h2.engine.Mode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
@@ -27,6 +28,11 @@ class MainController {
         val result = bookingService.isSeatFree(selectedSeat)
         bean.result = "Seat $selectedSeat is " + if (result) "available" else "booked"
         return ModelAndView("seatBooking", "bean", bean)
+    }
+
+    @RequestMapping("bootstrap")
+    fun createInitialData(): ModelAndView {
+        return homePage()
     }
 }
 
