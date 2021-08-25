@@ -47,6 +47,9 @@ class MainController {
         bean.performance = selectedPerformance
         val result = bookingService.isSeatFree(selectedSeat, selectedPerformance)
         bean.available = result
+        if (!result) {
+            bean.booking = bookingService.findBooking(selectedSeat, selectedPerformance)
+        }
 
         val model = mapOf(
             "bean" to bean,
@@ -56,6 +59,12 @@ class MainController {
         )
 
         return ModelAndView("seatBooking", model)
+    }
+
+    @RequestMapping(value = ["booking"], method = [RequestMethod.POST])
+    fun bookASeat(bean: CheckAvailabilityBackingBean): ModelAndView {
+        val booking = bookingService.reserveSeat(bean.seat!!, bean.performance!!, bean.customerName)
+        return ModelAndView("bookingConfirmed", "booking", booking)
     }
 
 //    @RequestMapping("bootstrap")
