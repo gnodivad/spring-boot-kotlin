@@ -1,8 +1,8 @@
 package com.gnodivad.theater.control
 
+import com.gnodivad.theater.data.SeatRepository
 import com.gnodivad.theater.services.BookingService
 import com.gnodivad.theater.services.TheaterService
-import org.h2.engine.Mode
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,6 +18,9 @@ class MainController {
     @Autowired
     lateinit var bookingService: BookingService
 
+    @Autowired
+    lateinit var seatRepository: SeatRepository
+
     @RequestMapping("")
     fun homePage(): ModelAndView =
         ModelAndView("seatBooking", "bean", CheckAvailabilityBackingBean())
@@ -30,10 +33,13 @@ class MainController {
         return ModelAndView("seatBooking", "bean", bean)
     }
 
-    @RequestMapping("bootstrap")
-    fun createInitialData(): ModelAndView {
-        return homePage()
-    }
+//    @RequestMapping("bootstrap")
+//    fun createInitialData(): ModelAndView {
+//        val seats = theaterService.seats
+//        seatRepository.saveAll(seats)
+//
+//        return homePage()
+//    }
 }
 
 class CheckAvailabilityBackingBean() {
