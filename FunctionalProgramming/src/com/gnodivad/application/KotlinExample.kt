@@ -11,4 +11,9 @@ fun main() {
     val result2 = applySomeFunctionToString("hello") { it.toUpperCase() }
     println(result)
     println(result2)
+    println()
+
+    val colors = listOf("red", "green", "blue", "black")
+    val uppercaseColors = colors.map { it.uppercase() }
+    uppercaseColors.forEach { println(it) }
 }
